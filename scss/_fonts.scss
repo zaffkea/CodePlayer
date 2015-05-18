@@ -1,0 +1,18 @@
+h1{
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: normal;
+  small{
+    font-size: 0.75rem;
+    display: block;
+  }
+}
+
+a{
+  color: $green;
+  transition: color 0.5s;
+  &:hover{
+    color: $orange;
+    transition: color 0.5s;
+  }
+}
