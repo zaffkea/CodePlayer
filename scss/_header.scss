@@ -34,46 +34,44 @@
       border-color: $white;
     }
   }
-  // #btnContainer{
-    // text-align: center;
-    // position: relative;
-    // margin: 1.1rem auto;
-    ul{
-      list-style-type: none;
-      // display: inline-block;
-      margin: 1.3em auto;
-      padding: 0;
-      text-align: center;
-      font-size: 1rem;
-      width: 275px;
-      background: $medGray;
-      border-radius: 5px;
-      // border: solid thin $darkGray;
-      li{
+  ul{
+    list-style-type: none;
+    margin: 1.3em auto;
+    padding: 0;
+    text-align: center;
+    font-size: 1rem;
+    width: 275px;
+    background: $medGray;
+    border-radius: 5px;
+    li{
       border: solid thin $darkGray;
-        float: left;
-        display: inline-block;
-        padding: 0.25rem 1.25rem 0.25rem 1rem;
+      float: left;
+      display: inline-block;
+      padding: 0.25rem 1.25rem 0.25rem 1rem;
+      border-right: none;
+      border-left: solid thin $medDarkGray;
+      cursor: pointer;
+      transition: background 0.5s;
+      &:first-child{
+        border-left: solid thin $darkGray;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      &:last-child{
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
         border-right: none;
-        // border-right: solid thin $darkGray;
-        cursor: pointer;
+        border-right: solid thin $darkGray;
+      }
+      &:hover{
+        background: $orange;
         transition: background 0.5s;
-        &:first-child{
-          border-top-left-radius: 5px;
-          border-bottom-left-radius: 5px;
-        }
-        &:last-child{
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
-          border-right: none;
-          border-right: solid thin $darkGray;
-        }
-        &:hover{
-          background: $darkGray;
-          transition: background 0.5s;
-          color: $white;
-        }
+        color: $white;
       }
     }
-  // }
+    li.selected{
+      background: $darkGray;
+      color: $white;
+    }
+  }
 }

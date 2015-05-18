@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         tasks: ['sass', 'autoprefixer', 'combine_mq', 'cssmin']
       },
       js: {
-        files: 'src/js/*.js',
+        files: 'js/code-player.js',
         tasks: ['concat', 'uglify'],
         options: {
           interrupt: true,
