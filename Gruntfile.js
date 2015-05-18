@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       dist: {
         options: {
 //          style: 'compressed',
-          sourceMap: false,
+          sourceMap: true,
           outputStyle: 'nested'
         },
         files: {

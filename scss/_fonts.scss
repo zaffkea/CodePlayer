@@ -1,3 +1,7 @@
+h1,h2,h3,h4,h5,h6,p,a,ul,ol,li,textarea,label{
+  margin: 0;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+}
 h1{
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -15,4 +19,9 @@ a{
     color: $orange;
     transition: color 0.5s;
   }
+}
+
+textarea{
+  font-size: 1em;
+  font-family: "Courier New", Courier, monospace;
 }

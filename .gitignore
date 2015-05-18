@@ -15,7 +15,7 @@ node_modules
 *.swp
 *.swo
 css/code-player.autoprefixer.css
+css/code-player.autoprefixer.css.map
 css/code-player.combine_mq.css
 css/code-player.combined.dest.css
 js/code-player.concat.js
-js/code-player.js
