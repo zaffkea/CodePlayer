@@ -67,9 +67,11 @@
         border-right: solid thin $darkGray;
       }
       &:hover{
-        background: $orange;
+        // background: $orange;
+        // color: $white;
+        background: $white;
+
         transition: background 0.5s;
-        color: $white;
       }
     }
     li.selected{
