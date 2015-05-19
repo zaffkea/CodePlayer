@@ -5,15 +5,12 @@
   height: 100%;
   height: calc(100% - 75px);
   padding-top: 75px;
-
-  background: $orange;
-
   .code-container{
-    background: $green;
     position: relative;
     margin: 0;
     flex-grow: 1;
     height: 100%;
+    overflow: hidden;
     label{
       background: $lightGray;
       padding: 0.5em 1em;
@@ -29,15 +26,10 @@
       box-sizing: border-box;
       height: 100%;
       width: 100%;
-      // &:focus{
-      //   background: $orange;
-      // }
+      resize: none;
     }
     textarea:focus + label {
-      //color:red;
       opacity: 0.25;
-      // border: thin solid $darkGray;
     }
   }
-
 }
