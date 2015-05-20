@@ -18,11 +18,18 @@ $(document).on('ready', function(){
       // the code containers according to what they
       // had them the last time they used the site
       for (var key in toggles) {
+        var toggler = $('#'+key);
+        var codeContainer = $('#'+$('#'+key).data('container'));
+        var textareaID = codeContainer.children('textarea').first().attr('id');
         if(toggles[key]){
-          $('#'+key).addClass('selected');
+          toggler.addClass('selected');
         }else{
-          $('#'+key).removeClass('selected');
-          $('#'+$('#'+key).data('container')).hide();
+          toggler.removeClass('selected');
+          codeContainer.hide();
+        }
+        // populate any code that might have been saved
+        if(textareaID){
+          $('#'+textareaID).val(localStorage.getItem(textareaID));
         }
       }
     }
@@ -58,18 +65,31 @@ $(document).on('ready', function(){
     // set the contents of the iframe to the contents of the
     // code container text areas
     var htmlString = '<style>' + $('#cssTextArea').val() + '</style>';
-    htmlString += '<script>' + $('#jsTextArea').val() + '</script>';
     htmlString += $('#htmlTextArea').val();
     $('#resultsIFrame').contents().find('html').html(htmlString);
+    document.getElementById('resultsIFrame').contentWindow.eval($('#jsTextArea').val());
+    if(ls){
+      $('textarea').each(function(){
+        localStorage.setItem($(this).attr('id'), $(this).val());
+      });
+    }
   });
   // add keyboard support
   $('textarea').on('keydown', function(e){
     if(e.keyCode === 9){
       // add support for tabs
       e.preventDefault();
-      var txt1 = $(this).val().substr(0, $(this).prop("selectionStart"));
-      var txt2 = $(this).val().substr($(this).prop("selectionEnd"));
-      $(this).val(txt1+'\t'+txt2);
+      var start = $(this).prop("selectionStart");
+      var end = $(this).prop("selectionEnd");
+      var txt1 = $(this).val().substr(0, start);
+      var txt2 = $(this).val().substr(end);
+      var tabChar = '  '
+      $(this).val(txt1+tabChar+txt2);
+
+      // prevent cursor from moving to the end of the texte area
+      // by moving it back to where it belongs
+      $(this).prop('selectionStart', start+tabChar.length);
+      $(this).prop('selectionEnd', end+tabChar.length);
     }
   });
 });
