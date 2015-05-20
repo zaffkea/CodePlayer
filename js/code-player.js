@@ -27,10 +27,9 @@ $(document).on('ready', function(){
       }
     }
   }
+  // allow people to show and hide code containers
   $("#header li").on("click", function(){
-
     var tog = $(this).attr('id');
-
     if($(this).hasClass("selected")){
       $(this).removeClass("selected");
       $('#'+$(this).data('container')).hide();
@@ -42,10 +41,7 @@ $(document).on('ready', function(){
     }
     if(ls){
       localStorage.setItem('toggles', JSON.stringify(toggles));
-      // localStorage.setItem('testObject', JSON.stringify(testObject));
     }
-    console.log(toggles);
-
   });
   // select everything in the text area if a user clicks the
   // label for it
@@ -65,5 +61,15 @@ $(document).on('ready', function(){
     htmlString += '<script>' + $('#jsTextArea').val() + '</script>';
     htmlString += $('#htmlTextArea').val();
     $('#resultsIFrame').contents().find('html').html(htmlString);
+  });
+  // add keyboard support
+  $('textarea').on('keydown', function(e){
+    if(e.keyCode === 9){
+      // add support for tabs
+      e.preventDefault();
+      var txt1 = $(this).val().substr(0, $(this).prop("selectionStart"));
+      var txt2 = $(this).val().substr($(this).prop("selectionEnd"));
+      $(this).val(txt1+'\t'+txt2);
+    }
   });
 });
