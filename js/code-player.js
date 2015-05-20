@@ -6,13 +6,25 @@ $(document).on('ready', function(){
     toggles = localStorage.getItem('toggles');
     toggles = JSON.parse(toggles);
     if(!toggles){
+      // if first time visiting, set all toggles to true
+      // so all code containers will be visible
       toggles = {};
-    }
-    for (var key in toggles) {
-      console.log(key);
-      // if (p.hasOwnProperty(key)) {
-      //   alert(key + " -> " + p[key]);
-      // }
+      $('#header ul').children('li').each(function(i) {
+        toggles[$(this).attr('id')] = true;
+        $(this).addClass('selected');
+      });
+    }else{
+      // if the user has been here before, turn on/off
+      // the code containers according to what they
+      // had them the last time they used the site
+      for (var key in toggles) {
+        if(toggles[key]){
+          $('#'+key).addClass('selected');
+        }else{
+          $('#'+key).removeClass('selected');
+          $('#'+$('#'+key).data('container')).hide();
+        }
+      }
     }
   }
   $("#header li").on("click", function(){
@@ -35,7 +47,23 @@ $(document).on('ready', function(){
     console.log(toggles);
 
   });
+  // select everything in the text area if a user clicks the
+  // label for it
   $('.code-container label').on('click', function(){
-    $(this).parent().children('textarea')[0].select();
+    var textAreaToSelect = $(this).parent().children('textarea')[0];
+    if(textAreaToSelect){
+      // don't try to select the iframe!
+      $(this).parent().children('textarea')[0].select();
+    }
+  });
+  // set the html, css, and javascript in the iframe
+  // and show the results
+  $('#runButt').on('click', function(){
+    // set the contents of the iframe to the contents of the
+    // code container text areas
+    var htmlString = '<style>' + $('#cssTextArea').val() + '</style>';
+    htmlString += '<script>' + $('#jsTextArea').val() + '</script>';
+    htmlString += $('#htmlTextArea').val();
+    $('#resultsIFrame').contents().find('html').html(htmlString);
   });
 });

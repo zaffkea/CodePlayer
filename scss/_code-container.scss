@@ -31,5 +31,11 @@
     textarea:focus + label {
       opacity: 0.25;
     }
+    #resultsIFrame{
+      background: $white;
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
